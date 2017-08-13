@@ -1,38 +1,51 @@
 let startGameButton = document.querySelector("#gameStartButton");
 startGameButton.addEventListener("click", startNewGame);
 let lightsOutPlayGrid = document.querySelector("#lightsOutGrid");
+let arrayOfLights = [];
+let winMessage = document.querySelector('h1');
 
 function startNewGame() {
   grid = '';
+  winMessage.classList = '';
+
   for (var i = 1; i < 10; i++) {
     if (Math.round(Math.random()) === 1) {
-      grid += `<div class="" value=${i} id="lightBox${i}">
+      grid += `<div class="lightBox" id="lightBox${i}">
     </div>`
     } else {
-      grid += `<div class="active" value=${i} id="lightBox${i}">
+      grid += `<div class="lightBox active" id="lightBox${i}">
     </div>`
     }
   }
   lightsOutPlayGrid.innerHTML = grid;
+  arrayOfLights = document.getElementsByClassName('lightBox');
 }
 
 
 
-lightsOutPlayGrid.addEventListener("click", function(buttonsChange){
+lightsOutPlayGrid.addEventListener("click", function(buttonsChange) {
   currentClass = buttonsChange.target;
   currentClass.classList.toggle("active")
+  self = parseInt(currentClass.id.slice(-1));
 
+  if (self - 3 > 0) {
+    arrayOfLights[self - 4].classList.toggle("active");
+  }
+  if (self + 3 < 10) {
+    arrayOfLights[self + 2].classList.toggle("active");
+  }
+  if (self % 3 === 1) {
+    arrayOfLights[self].classList.toggle("active");
+  } else if (self % 3 === 0) {
+    arrayOfLights[self - 2].classList.toggle("active");
+  } else {
+    arrayOfLights[self].classList.toggle("active");
+    arrayOfLights[self - 2].classList.toggle("active");
+  }
+  for (var i = 0; i < arrayOfLights.length; i++) {
+    if (arrayOfLights[i].classList[1] !== "active") {
+      return;
+    }
+  }
+  winMessage.classList.toggle("active");
 });
-
-
-//
-// toggle this class avtive and then toggle 4 around it.
-// take number of this up is -3 down is +3 left is -1 right is +1
-// set up to this.number -3 if >0 toggle active
-// set down to this.number +3 if <10 toggle active
-// set left to this.number -1 if >0 toggle active
-// set right to this.number +1 if <10 toggle active
-//
-// when light get clicked change it and lights on 4 sides of it(up down left and right)
-// if all lights are active player wins.
-//

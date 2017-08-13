@@ -20,7 +20,14 @@
  #gameControlsArea{
    height:75px;
  }
+h1{
+  display: none;
+  background-color: green;
+}
 
+h1.active{
+  display: block;
+}
 body{
   background-color: lightblue;
 }
