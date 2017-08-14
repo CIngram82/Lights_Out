@@ -9,21 +9,27 @@ function startNewGame() {
   winMessage.classList = '';
 
   for (var i = 1; i < 10; i++) {
-    if (Math.round(Math.random()) === 1) {
-      grid += `<div class="lightBox" id="lightBox${i}">
-    </div>`
-    } else {
+    // if (Math.round(Math.random()) === 1) {
+    //   grid += `<div class="lightBox" id="lightBox${i}">
+    // </div>`
+    // } else {
       grid += `<div class="lightBox active" id="lightBox${i}">
     </div>`
-    }
+    // }
   }
+
   lightsOutPlayGrid.innerHTML = grid;
   arrayOfLights = document.getElementsByClassName('lightBox');
+  for (var i = 0; i < arrayOfLights.length; i++) {
+    buttonsChange(arrayOfLights[i])
+  }
 }
 
 
 
-lightsOutPlayGrid.addEventListener("click", function(buttonsChange) {
+lightsOutPlayGrid.addEventListener("click", buttonsChange);
+
+function buttonsChange(buttonsChange) {
   currentClass = buttonsChange.target;
   currentClass.classList.toggle("active")
   self = parseInt(currentClass.id.slice(-1));
@@ -48,4 +54,4 @@ lightsOutPlayGrid.addEventListener("click", function(buttonsChange) {
     }
   }
   winMessage.classList.toggle("active");
-});
+};
