@@ -1,21 +1,21 @@
 #lightsOutGrid div{
   height: 100px;
   width: 100px;
-  background-color: darkgrey;
+  background-color: white;
   border: 1px solid black;
   border-radius: 5px;
   display: inline-block;
 }
 #lightsOutGrid{
-  width: 325px;
-  height: 325px;
+  width: 525px;
+  height: 525px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 #lightsOutGrid .active{
-  background-color: white;
+  background-color: darkgrey;
 }
  #gameControlsArea{
    height:75px;
